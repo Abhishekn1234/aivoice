@@ -20,5 +20,11 @@ start().catch(error => {
     message: databaseError.message || error.message || String(databaseError),
     sqlState: databaseError.sqlState
   });
+  if (databaseError.code === 'ENOTFOUND') {
+    console.error('DB_HOST did not resolve. Copy the service hostname exactly from your database provider and check that DNS/internet access is available.');
+  }
+  if (databaseError.code === 'ECONNREFUSED' || databaseError.code === 'ETIMEDOUT') {
+    console.error('Check DB_HOST and DB_PORT, confirm the database service is running, and verify that its network access rules allow this client.');
+  }
   process.exit(1);
 });
