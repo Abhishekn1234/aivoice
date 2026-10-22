@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7fb"><title>Sayso · Speech to text</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside class="sidebar"><a class="brand" href="/">◖ <span>sayso<span class="dot">.</span></span></a><div class="nav-label">WORKSPACE</div><a class="nav active" href="/">▦ <span>Dashboard</span></a><a class="nav" id="historyNav" href="#history">◷ <span>Transcription history</span><b id="navCount">0</b></a><div class="sidebar-bottom"><div class="help"><span>✳</span><strong>Made for your voice</strong><p>Speak naturally. Your words appear as you say them.</p><a href="#how">How it works ↗</a></div><div class="profile"><i>S</i><span><strong>My workspace</strong><small>Personal workspace</small></span></div></div></aside>
+  <main><header><div class="crumb">Workspace <span>/</span> <b>Dashboard</b></div><div class="db" id="dbStatus"><i></i> Connecting to MySQL…</div></header>
+    <div class="content"><section class="welcome"><div><div class="eyebrow">YOUR VOICE, IN WRITING</div><h1>Good to hear you <em>✳</em></h1><p>Capture every thought, in any language.</p></div><div class="date" id="todayDate"></div></section>
+      <section class="stats"><article><span class="stat-icon purple">≋</span><div><small>TOTAL TRANSCRIPTIONS</small><strong id="totalStat">0</strong></div></article><article><span class="stat-icon orange">◷</span><div><small>WORDS CAPTURED</small><strong id="wordsStat">0</strong></div></article><article><span class="stat-icon green">✓</span><div><small>LANGUAGES</small><strong id="langsStat">0</strong></div></article></section>
+      <section class="capture"><div class="capture-head"><div><small class="live">● &nbsp;LIVE TRANSCRIPTION</small><h2>What’s on your mind?</h2><p>Hit record and just start talking. We’ll take it from here.</p></div><div class="tools"><label>◎ <select id="language"><option value="en-IN">English (India)</option><option value="hi-IN">Hindi (India)</option><option value="en-US">English (US)</option><option value="en-GB">English (UK)</option><option value="es-ES">Español</option><option value="fr-FR">Français</option></select></label><button id="clearBtn" class="quiet">Clear</button></div></div>
+        <div class="editor"><div class="placeholder" id="placeholder">〰<span>Your words will show up here…</span><small>Try speaking in English, हिंदी, or switch between both.</small></div><div id="transcriptText" class="transcript" contenteditable="true" role="textbox" aria-label="Transcript text"></div><div id="recordingIndicator" class="listening"><i></i><i></i><i></i> Listening <span id="elapsed">00:00</span></div></div>
+        <div id="supportNote" class="notice" hidden></div><div class="capture-footer"><small id="wordCount">0 words</small><div><button id="recordBtn" class="record"><b id="recordSymbol">●</b><span id="recordLabel">Start recording</span></button><button id="saveBtn" class="save" disabled>▣ &nbsp;Save transcript</button></div></div>
+      </section>
+      <section id="history" class="history"><div class="history-head"><div><small>YOUR LIBRARY</small><h2>Recent transcriptions <span id="historyTotal">0</span></h2></div><input id="searchInput" type="search" placeholder="⌕  Search transcripts"></div><div id="transcriptList"></div><div id="emptyState" class="empty"><span>〰</span><strong>No transcriptions yet</strong><p>Your saved voice notes will appear here.</p></div><button id="loadMore" class="load-more" hidden>View all transcriptions →</button></section>
+      <section id="how" class="how"><div><b>01</b><strong>Choose a language</strong><p>Choose the language you’ll speak in.</p></div><div><b>02</b><strong>Speak your mind</strong><p>Words appear live. Edit your transcript right here.</p></div><div><b>03</b><strong>Save for later</strong><p>Your notes are stored in your MySQL database.</p></div></section><footer>Made for ideas that don’t wait ✳ <small>Speech recognition works best in Chrome or Edge.</small></footer>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status"></div><div class="backdrop" id="modalBackdrop" hidden><div class="modal"><span>⌫</span><h3>Delete this transcription?</h3><p>This can’t be undone. Your saved note will be permanently removed.</p><div><button id="cancelDelete">Keep it</button><button id="confirmDelete">Delete transcription</button></div></div></div>
+  <script src="/app.js"></script>
+</body></html>

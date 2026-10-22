@@ -1,0 +1,19 @@
+{
+  "name": "sayso-speech-to-text",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Real-time speech transcription dashboard backed by Node.js, Sequelize, and MySQL",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "db:setup": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup-mysql.ps1"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0",
+    "sequelize": "^6.37.5"
+  }
+}
