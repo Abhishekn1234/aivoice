@@ -1,5 +1,4 @@
 const path = require('node:path');
-const fs = require('node:fs');
 const dotenv = require('dotenv');
 const { Sequelize } = require('sequelize');
 
@@ -25,24 +24,6 @@ if (!Number.isInteger(port) || port < 1 || port > 65535) {
   throw new Error('DB_PORT must be a valid TCP port between 1 and 65535.');
 }
 
-const projectRoot = path.resolve(__dirname, '../..');
-const dialectOptions = { charset: 'utf8mb4' };
-if ((process.env.DB_SSL || '').toLowerCase() === 'true') {
-  const caFile = process.env.DB_SSL_CA_FILE;
-  if (!caFile) {
-    throw new Error('DB_SSL=true requires DB_SSL_CA_FILE to point to the database CA certificate.');
-  }
-  const caPath = path.isAbsolute(caFile) ? caFile : path.resolve(projectRoot, caFile);
-  try {
-    dialectOptions.ssl = {
-      ca: fs.readFileSync(caPath, 'utf8'),
-      rejectUnauthorized: true
-    };
-  } catch (error) {
-    throw new Error(`Cannot read MySQL CA certificate at "${caPath}": ${error.message}`);
-  }
-}
-
 const sequelize = new Sequelize({
   database: process.env.DB_NAME.trim(),
   username: process.env.DB_USER.trim(),
@@ -56,7 +37,9 @@ const sequelize = new Sequelize({
     charset: 'utf8mb4',
     collate: 'utf8mb4_0900_ai_ci'
   },
-  dialectOptions,
+  dialectOptions: {
+    charset: 'utf8mb4'
+  },
   pool: {
     max: 5,
     min: 0,
